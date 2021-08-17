@@ -1,0 +1,12 @@
+prefix=@CMAKE_INSTALL_PREFIX@
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include/cJSON
+
+Name: cJSON
+Description: cJSON
+Version: 1.0.0
+Requires:
+Libs.private:
+Libs: -L${libdir} -lcJSON
+Cflags: -I${includedir}

@@ -37,5 +37,5 @@ for h_file in h_file_list:
             content_struct = content_struct + "\n" + content_temp
         content=content+content_struct
 #print(content)
-with open("struct_defination.txt", "w") as f:
+with open("inc/struct_defination.txt", "w") as f:
     f.write(content)

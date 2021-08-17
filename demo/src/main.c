@@ -26,15 +26,19 @@
  * Created on: 2015-10-14
  */
 
-#include "s2j.h"
 #include <stdint.h>
 #include <stdio.h>
+
+#include "s2j.h"
+#include "mc_usr_def.h"
+#include "my_struct_2_json.h"
 
 #ifdef DEBUGS2J
 extern int s2j_test(void);
 extern int s2j_test2(void);
 #endif// DEBUGS2J
 
+#if 0
 typedef struct {
     char name[16];
 } Hometown;
@@ -104,8 +108,10 @@ static cJSON *struct_to_json(void* struct_obj) {
     /* return Student JSON object pointer */
     return json_student;
 }
+#endif
 
 int main(void) {
+#if 0
     static Student orignal_student_obj = {
             .id = 24,
             .weight = 71.2,
@@ -128,10 +134,57 @@ int main(void) {
 
     s2j_delete_json_obj(json_student);
     s2j_delete_struct_obj(converted_student_obj);
+#endif
 
 #ifdef DEBUGS2J
     s2j_test();
     s2j_test2();
+    
+    student_info_t xiaohong = {
+        .id = 100,
+        .age = 10,
+        .height = 100,
+        .weight = 40,
+        .name = {"xiaohong"},
+        .home = {
+            [0] = {
+                .id = 330683,
+                .name = {"LiJiaCun"},
+                .addr = {"HeBeiShengShiJiaZhuangShiQuFangZhen"},
+            },
+            [1] = {
+                .id = 330684,
+                .name = {"LiJiaCun"},
+                .addr = {"HeBeiShengShiJiaZhuangShiQuFangZhen"},
+            }
+        },
+        .school = {
+            [0] = {
+                .id = 330685,
+                .name = {"LiJiaCun"},
+                .addr = {"HeBeiShengShiJiaZhuangShiQuFangZhen"},
+            },
+            [1] = {
+                .id = 330686,
+                .name = {"LiJiaCun"},
+                .addr = {"HeBeiShengShiJiaZhuangShiQuFangZhen"},
+            },
+            [2] = {
+                .id = 330687,
+                .name = {"LiJiaCun"},
+                .addr = {"HeBeiShengShiJiaZhuangShiQuFangZhen"},
+            },
+            [3] = {
+                .id = 330688,
+                .name = {"LiJiaCun"},
+                .addr = {"HeBeiShengShiJiaZhuangShiQuFangZhen"},
+            }
+        },
+    };
+    
+    cJSON *json_student = struct_to_json_student_info_t(&xiaohong);
+    char* str_json_student = cJSON_Print(json_student);
+    printf("\njson_student:\n%s: %s\n", "student_info_t", str_json_student);
 #endif// DEBUGS2J
 
     return 0;

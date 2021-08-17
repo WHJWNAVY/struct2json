@@ -38,3 +38,5 @@ COPYING text
 *.ini -text
 *.sct -text
 *.xsd -text
+install/
+*/build/

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import re
-struct_txt = "struct_defination.txt"
+struct_txt = "inc/struct_defination.txt"
 with open(struct_txt,"r") as f:
     lines = f.readlines()
 #注意:结构体后面不能加任何注释，仅仅是结构体的一般定义就好，不然会解析出问题
@@ -175,7 +175,7 @@ for item in struct_str_split_list:
 #print(fun_list)
 
 #将函数列表添加到指定的头文件中
-file = open('my_struct_2_json.h','w')
+file = open('inc/my_struct_2_json.h','w')
 h_header = r"""
 #ifdef __cplusplus
 extern "C" {
@@ -195,7 +195,7 @@ file.write(content.strip())
 file.close()
 
 head_str = r"""
-#include "inc/mc_usr_def.h"
+#include "mc_usr_def.h"
 #include "my_struct_2_json.inc"
 #include "my_struct_2_json.h"
 
@@ -290,7 +290,7 @@ str_return = head_str + return_code + "#ifdef DEBUGS2J \n int s2j_test(void)\n" 
 error_return = error_print_json2bin + "\n" + "*************************************" + "\n" + error_print_bin2json
 print(error_return)
 # 将转换的代码写入文件中
-with open("my_struct_2_json.c","w") as f:
+with open("src/my_struct_2_json.c","w") as f:
     f.write(str_return.strip())
-with open("error_print.txt","w") as f:
+with open("src/error_print.txt","w") as f:
     f.write(error_return.strip())
