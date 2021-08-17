@@ -54,8 +54,8 @@ run_target() {
     echo "Run [${target}] end ..."
 }
 
-#clean_target
-#build_target cJSON
-#build_target struct2json
+clean_target
+build_target cJSON
+build_target struct2json
 build_target demo
 run_target tests2j
